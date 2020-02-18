@@ -1,8 +1,10 @@
  import React from 'react';
  import Choice from './Choice';
+ import ErrorMessage from './ErrorMessage';
  class Question extends React.Component {
    state = {
-     choiceId: null
+     choiceId: null,
+     error: null
    }
    
    showChoices = () => {
@@ -16,10 +18,17 @@
    }
 
    onButtonClick = (event) => {
-    this.props.onClick({
-      choiceId: this.state.choiceId,
-      questionId: this.props.question.id
-    });
+    if (!this.state.choiceId) {
+      this.setState({error: 'Tee oma valik!'});
+      setTimeout(() => {
+        this.setState({error: null});
+      }, 3000);
+    } else {
+      this.props.onClick({
+        choiceId: this.state.choiceId,
+        questionId: this.props.question.id,
+      });
+    }
    }
 
    render() {
@@ -30,6 +39,7 @@
          <div className="ui list">
           {this.showChoices()}
          </div>
+         <ErrorMessage message={this.state.error} />
          <button className="ui primary button" onClick={e => this.onButtonClick(e)}>Vasta</button>
        </div>
      );

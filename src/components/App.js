@@ -30,7 +30,6 @@ class App extends React.Component {
         { id: 9, questionId: 3, choice: 'Esimene valik'},
         { id: 10, questionId: 3, choice: 'Teine valik'},
         { id: 11, questionId: 3, choice: 'Kolmas valik'},
-        { id: 12, questionId: 3, choice: 'Neljas valik'},
       ]
     }
   ]
